@@ -1,0 +1,75 @@
+<?php 
+$flash=$this->flashMessenger()
+            ->setMessageOpenFormat('<div%s>')
+            ->setMessageSeparatorString('')
+            ->setMessageCloseString('</div>');
+?>
+<?php
+$this->headTitle("Edit order");
+$form = $this->form;
+$form->prepare();
+$formLabel = $this->plugin('formLabel');
+echo $this->form()->openTag($form);
+echo $flash->render('duplicate',array('btn', 'btn-danger'));
+?>
+<h1>Edit order</h1>
+<hr/>
+<div class="form_element">
+<?php
+    $id = $form->get('id');
+   // hidden id
+    echo $this->formInput($id);
+?>
+</div>
+<div class="form_element">
+<?php
+    $customerId = $form->get('customerId');
+    echo $formLabel->openTag().$customerId->getOption('label')." ";
+    echo $this->formInput($customerId);
+	echo $this->formElementErrors($customerId);
+    echo $formLabel->closeTag();
+?>
+</div>
+<div class="form_element">
+<?php
+    $productId = $form->get('productId');
+    echo $formLabel->openTag().$productId->getOption('label')." ";
+    echo $this->formInput($productId);
+	echo $this->formElementErrors($productId);
+    echo $formLabel->closeTag();
+?>
+</div>
+<div class="form_element">
+<?php
+    $deliveryId = $form->get('deliveryId');
+    echo $formLabel->openTag().$deliveryId->getOption('label')." ";
+    echo $this->formInput($deliveryId);
+	echo $this->formElementErrors($deliveryId);
+    echo $formLabel->closeTag();
+?>
+</div>
+
+<div class="form_element">
+<?php
+    $productQuantity = $form->get('productQuantity');
+    echo $formLabel->openTag().$productQuantity->getOption('label')." ";
+    echo $this->formInput($productQuantity);
+	echo $this->formElementErrors($productQuantity);
+    echo $formLabel->closeTag();
+?>
+</div>
+<div class="form_element">
+<?php
+    $productPrice = $form->get('productPrice');
+    echo $formLabel->openTag().$productPrice->getOption('label')." ";
+    echo $this->formInput($productPrice);
+	echo $this->formElementErrors($productPrice);
+    echo $formLabel->closeTag();
+?>
+</div>
+<?php 
+echo $this->formElement($form->get('submit'));
+echo $this->form()->closeTag(); 
+?>
+<hr/>
+<a class="btn btn-default" href="<?=$this->basePath("/application/crud")?>">Cancel</a>

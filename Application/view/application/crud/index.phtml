@@ -1,0 +1,38 @@
+<h1>Example order management</h1>
+<?php 
+$flash=$this->flashMessenger()
+            ->setMessageOpenFormat('<div%s>')
+            ->setMessageSeparatorString('')
+            ->setMessageCloseString('</div>');
+?>
+<?php echo $flash->render('add_success', array('alert', 'alert-dismissable', 'alert-success'));?>
+<table class="table">
+    <tr>
+        <td colspan="9">
+            <a class="btn btn-success" href="<?=$this->basePath()?>/application/crud/add">Add order</a>
+        </td>
+    </tr>
+    <tr>
+        <th>ID</th>
+        <th>Customer</th>
+        <th>Product</th>
+        <th>Delivery type</th>
+        <th>Qty.</th>
+		<th>Price</th>
+        <th>Total</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <?php foreach($lista as $order){ ?>
+    <tr style="background-color:<?php echo $this->cycle(array("#F0F0F0","#FFFFFF"))->next()?>">
+		<td><?=$order["id"]?></td>
+        <td><?=$order["customerId"]?></td>
+        <td><?=$order["productId"]?></td>
+        <td><?=$order["deliveryId"]?></td>
+        <td><?=$order["productQuantity"]?></td>
+		<td><?=$order["productPrice"]?></td>
+		<td><?=$order["productPrice"]*$order["productQuantity"]?></td>
+        <td><a class="btn btn-primary" href="<?=$this->basePath()?>/application/crud/edit/<?=$order["id"]?>">Edit</a></td>
+        <td><a class="btn btn-danger" href="<?=$this->basePath()?>/application/crud/delete/<?=$order["id"]?>">Delete</a></td>
+    </tr>
+    <?php } ?>
